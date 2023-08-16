@@ -21,6 +21,7 @@
                 <th> Phone </th>
                 <th> Address </th>
                 <th> Gender </th>
+                <th> Image </th>
                 <th> Operations </th>
             </tr>
         </thead>
@@ -33,6 +34,8 @@
                 <td>{{ product.phone }}</td>
                 <td>{{ product.address }}</td>
                 <td>{{ product.gender }}</td>
+                <!-- f"/media/{str(product.profile_pic)} -->
+                <td><img src='{{ product.profile_pic }}' width="100"></td>
                 <td>Edit/Delete/</td>
             </tr>
             {% endfor %}
