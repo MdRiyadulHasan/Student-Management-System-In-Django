@@ -100,7 +100,10 @@ class registrationView(TemplateView):
                     print("registration successful")
 
                     # return Response({'message':'registration successfull','token': token, 'results':jsonData}, status= status.HTTP_201_CREATED)
-                    return render(request, 'student/login.html')
+                    return redirect('/login/')
+            else:
+                messages.add_message(request, messages.INFO, 'Phone or email Already Exists !')
+                return redirect('/registration/')
             
         else:
             messages.add_message(request, messages.INFO, 'Wrong Password')
@@ -108,8 +111,20 @@ class registrationView(TemplateView):
             
 
 
-def loginPage(request):
-    return render(request, 'student/login.html')
+class loginPageView(TemplateView): 
+    template_name = 'student/login.html'
+    permission_classes = [AllowAny]
+    def post(self, request):
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        hashPassword = hashlib.md5(password.encode('utf-8')).hexdigest()
+        checkUser = EndUser.objects.filter(email=email, password=hashPassword).first()
+        if checkUser:
+            # messages.add_message(request, messages.INFO, 'Login Successfull')
+             return redirect('/home/')
+        
+        messages.add_message(request, messages.INFO, 'Something went wrong')
+        return redirect('/login/')
 
 def addStaff(request):
     return render(request, 'admin2/add_staff.html')
