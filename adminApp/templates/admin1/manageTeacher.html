@@ -1,0 +1,46 @@
+{% extends 'admin2/base.html' %}
+{% load static %}
+{% block title %} Manage Teacher {% endblock %}
+
+{% block content %}
+
+<!-- product_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Teacher</title>
+</head>
+<body>
+    <h1>Teacher List</h1>
+    <table class="table table-bordered table-hover table-brown">
+        <thead>
+            <tr>
+                <th>Teacher Name </th>
+                <th> Department </th>
+                <th> Designamtion </th>
+                <th> Phone </th>
+                <th> Address </th>
+                <th> Gender </th>
+                <th> Operations </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in teacherInfo %}
+            <tr>
+                <td>{{ product.teacherName }}</td>
+                <td>{{ product.department }}</td>
+                <td>{{ product.designamtion }}</td>
+                <td>{{ product.phone }}</td>
+                <td>{{ product.address }}</td>
+                <td>{{ product.gender }}</td>
+                <td>Edit/Delete/</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+
+
+
+{% endblock %}
