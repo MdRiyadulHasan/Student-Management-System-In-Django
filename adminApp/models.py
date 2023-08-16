@@ -16,12 +16,14 @@ class Department(models.Model):
 class Teacher(models.Model):
     teacherName       = models.CharField(max_length=250)
     department        = models.ForeignKey(Department, on_delete=models.DO_NOTHING)
-    email             = models.EmailField(max_length=255)
+    data1 = (("Lecturer", "Lecturer"),("Ast. Professor","Ast. Professor"), ("Associate Professor", "Associate Professor"), ("Professor", "Professor"))
+    designamtion      = models.CharField(max_length=255, choices=data1, default="Lecturer")
+    email             = models.CharField(max_length=255)
     phone             = models.CharField(max_length=255)
     password          = models.CharField(max_length=255)
     gender            = models.CharField(max_length=255)
     address           = models.CharField(max_length=255, blank=True, null=True)
-    profile_pic       = models.ImageField(upload_to='TeacherImage/', blank=True, null=True) 
+    profile_pic       = models.ImageField(upload_to='images/') 
     created           = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     updated           = models.DateTimeField(auto_now=True, blank=True, null=True)
 
