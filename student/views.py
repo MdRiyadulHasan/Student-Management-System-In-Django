@@ -126,8 +126,7 @@ class loginPageView(TemplateView):
         messages.add_message(request, messages.INFO, 'Something went wrong')
         return redirect('/login/')
 
-def addStaff(request):
-    return render(request, 'admin2/add_staff.html')
+
 
 def doLogin(request):
     if request.method == 'POST':
