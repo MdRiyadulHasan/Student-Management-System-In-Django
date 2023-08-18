@@ -1,6 +1,6 @@
 {% extends 'admin2/base.html' %}
 {% load static %}
-{% block title %} Manage Teacher {% endblock %}
+{% block title %} Update Teacher {% endblock %}
 
 {% block content %}
 
@@ -11,23 +11,28 @@
     <title>Manage Teacher</title>
 </head>
 <body>
-    <h1>Teacher List</h1>
+    <div class="container text-center">
+        <h1 class="text-decoration-underline text-success">Teacher List</h1>
+    </div>
+    <!-- <h1 >Teacher List</h1> -->
     <table class="table table-bordered table-hover table-brown">
         <thead>
             <tr>
-                <th>Teacher Name </th>
+                <th> Serial No </th>
+                <th> Teacher Name </th>
                 <th> Department </th>
                 <th> Designamtion </th>
                 <th> Phone </th>
                 <th> Address </th>
                 <th> Gender </th>
-                <th> Image </th>
+                <!-- <th> Image </th> -->
                 <th> Operations </th>
             </tr>
         </thead>
         <tbody>
             {% for product in teacherInfo %}
             <tr>
+                <td>{{ product.id }}</td>
                 <td>{{ product.teacherName }}</td>
                 <td>{{ product.department }}</td>
                 <td>{{ product.designamtion }}</td>
@@ -35,8 +40,12 @@
                 <td>{{ product.address }}</td>
                 <td>{{ product.gender }}</td>
                 <!-- f"/media/{str(product.profile_pic)} -->
-                <td><img src='{{ product.profile_pic }}' width="100"></td>
-                <td>Edit/Delete/</td>
+                <!-- <td><img src='{{ product.profile_pic }}' width="100"></td> -->
+                <td>
+                    <a href="/adminApp/updateData/{{product.id}}" class="btn btn-primary">Edit</a>
+                    <a href="/adminApp/deleteData/{{product.id}}" class="btn btn-danger">Delete</a>
+
+               </td>
             </tr>
             {% endfor %}
         </tbody>
