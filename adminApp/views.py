@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -56,4 +56,45 @@ def manageTeacher(request):
     
     return render(request, 'admin1/manageTeacher.html', {'teacherInfo': alldata})
 
+def updateData(request, id):
+    item = get_object_or_404(Teacher, id=id)
+    if request.method == 'POST':
+        # Retrieve updated data from POST request
+        teacherName =request.POST.get('teacherName')
+        department = request.POST.get('department') 
+        designamtion = request.POST.get('designamtion') 
+        print("hello", department)
+        email = request.POST.get('email')
+        phone =  request.POST.get('phone')
+        gender = request.POST.get('gender')
+        address =  request.POST.get('address')
+        profile_pic = request.POST.get('profile_pic')
+        password = request.POST.get('password')
 
+        
+        # new_name = request.POST['new_name']
+        # Update the item's data
+        item.teacherName = teacherName
+        item.department_id = int(department)
+        item.designamtion = designamtion
+        item.email = email
+        item.phone = phone
+        item.gender = gender
+        item.address = address
+        item.profile_pic = profile_pic
+        item.password = password
+
+        item.save()
+        return redirect('/adminApp/manageTeacher/', id=id)  # Redirect to detail page
+    return render(request, 'admin1/update.html', {'item': item})
+
+    
+
+
+def deleteData(request, id):
+    item = get_object_or_404(Teacher, id=id)
+    if request.method=="POST":
+        item.delete()
+        return redirect('/adminApp/manageTeacher/')
+        
+    return render(request, 'admin1/delete.html', {'item': item})
