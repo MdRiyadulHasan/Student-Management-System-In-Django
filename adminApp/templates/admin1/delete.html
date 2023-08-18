@@ -1,0 +1,16 @@
+{% extends 'admin2/base.html' %}
+{% load static %}
+{% block title %} Manage Teacher {% endblock %}
+{% block content %}
+<div class="container mt-0">
+    <h1>Delete Item</h1>
+    <p>Are you sure you want to delete "{{ item.teacherName }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn btn-danger" type="submit">Delete</button>
+        <a class="btn btn-secondary" href="/adminApp/manageTeacher/">Cancel</a>
+    </form>
+</div>
+
+{% endblock %}
+ 
