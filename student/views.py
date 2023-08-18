@@ -112,7 +112,7 @@ class registrationView(TemplateView):
 
 
 class loginPageView(TemplateView): 
-    template_name = 'student/login.html'
+    template_name = 'student1/login.html'
     permission_classes = [AllowAny]
     def post(self, request):
         email = request.POST.get('email')
